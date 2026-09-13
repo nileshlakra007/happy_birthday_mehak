@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>For Mehak</title>
+<meta name="description" content="Happy birthday, puchu.">
+<meta name="theme-color" content="#FAF9F7">
+
+<!-- ════════════════════════════════════════════════════════════════
+     LINK PREVIEW — what WhatsApp shows when you send her the link.
+     ⚠️  Replace BOTH https://REPLACE-ME/ below with your real hosted
+     address. WhatsApp requires absolute URLs here; relative paths
+     are ignored and she'd get a bare link with no card.
+     ════════════════════════════════════════════════════════════════ -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://REPLACE-ME/">
+<meta property="og:title" content="Ek cheez hai, tumhare liye">
+<meta property="og:description" content="Theek 12 baje. Jaisa tumne kaha tha.">
+<meta property="og:image" content="https://REPLACE-ME/preview.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Bunting and confetti over the word puchu">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Ek cheez hai, tumhare liye">
+<meta name="twitter:description" content="Theek 12 baje. Jaisa tumne kaha tha.">
+<meta name="twitter:image" content="https://REPLACE-ME/preview.jpg">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Cellipse%20cx%3D%2216%22%20cy%3D%2210%22%20rx%3D%225.5%22%20ry%3D%228.5%22%20fill%3D%22%23E8B44F%22/%3E%3Crect%20x%3D%2212.5%22%20y%3D%2217%22%20width%3D%227%22%20height%3D%2212%22%20rx%3D%222%22%20fill%3D%22%23FAF9F7%22%20stroke%3D%22%231A1A18%22%20stroke-width%3D%222%22/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FAF9F7;
+    --paper-2:#F2EFEA;
+    --paper-3:#E9E5DE;
+    --ink:#1A1A18;
+    --ink-2:#3C3A36;
+    --muted:#8A8782;
+    --line:#E3E0DB;
+    --accent:#C8553D;
+    --serif:"Instrument Serif", Georgia, "Times New Roman", serif;
+    --sans:"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    --ease:cubic-bezier(.22,.61,.36,1);
+  }
+  *,*::before,*::after{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:var(--sans);font-weight:300;line-height:1.7;
+    -webkit-font-smoothing:antialiased;overflow-x:hidden;
+  }
+  body.is-sealed{overflow:hidden;height:100svh}
+  img{max-width:100%;display:block}
+
+  /* ══ stage 1 — envelope ══ */
+  #seal{
+    position:fixed;inset:0;z-index:50;
+    display:grid;place-items:center;padding:24px;
+    background:var(--paper);
+    transition:opacity .8s var(--ease);
+  }
+  #seal.is-gone{opacity:0;pointer-events:none}
+  .seal__inner{display:grid;justify-items:center;gap:30px}
+
+  .envelope{
+    position:relative;width:min(84vw,360px);aspect-ratio:3/2;
+    perspective:1500px;cursor:pointer;background:none;border:0;padding:0;
+    -webkit-tap-highlight-color:transparent;
+  }
+  .envelope:focus-visible{outline:2px solid var(--accent);outline-offset:16px;border-radius:4px}
+  .env__body{
+    position:absolute;inset:0;background:var(--paper-2);
+    border:1px solid var(--line);border-radius:3px;
+    box-shadow:0 22px 60px -28px rgba(26,26,24,.3);
+  }
+  .env__letter{
+    position:absolute;left:7%;right:7%;top:8%;height:84%;
+    background:#fff;border:1px solid var(--line);border-radius:2px;z-index:2;
+    transform:translateY(0);
+    transition:transform 1s var(--ease) .45s, z-index 0s .45s;
+    padding:24px 20px;display:grid;align-content:start;gap:11px;
+  }
+  .env__letter i{display:block;height:1px;background:var(--paper-3)}
+  .env__letter i:nth-child(2){width:84%}
+  .env__letter i:nth-child(3){width:93%}
+  .env__letter i:nth-child(4){width:62%}
+  .env__pocket{
+    position:absolute;inset:0;z-index:3;background:var(--paper-2);
+    border:1px solid var(--line);border-top:0;border-radius:3px;
+    clip-path:polygon(0 0, 50% 46%, 100% 0, 100% 100%, 0 100%);
+  }
+  .env__flap{
+    position:absolute;top:0;left:0;right:0;height:52%;z-index:5;
+    transform-origin:top center;transform:rotateX(0deg);
+    transition:transform .9s var(--ease), z-index 0s .45s;
+    background:linear-gradient(172deg,#F0EDE7,#E1DDD4);
+    filter:drop-shadow(0 3px 3px rgba(26,26,24,.07));
+    clip-path:polygon(0 0, 100% 0, 50% 100%);
+    backface-visibility:hidden;
+  }
+  .envelope[data-open="true"] .env__flap{transform:rotateX(181deg);z-index:1}
+  .envelope[data-open="true"] .env__letter{transform:translateY(-58%);z-index:4}
+
+  .hint{
+    margin:0;font-size:12.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);
+    display:flex;align-items:center;gap:12px;animation:breathe 3.4s ease-in-out infinite;
+    transition:opacity .4s;
+  }
+  .hint::before,.hint::after{content:"";width:24px;height:1px;background:var(--line)}
+  @keyframes breathe{0%,100%{opacity:.5}50%{opacity:1}}
+  .hint.is-out{animation:none;opacity:0}
+
+  /* ══ stage 2 — the card ══ */
+  #card{opacity:0;transition:opacity 1.2s var(--ease)}
+  #card.is-here{opacity:1}
+
+  .wrap{max-width:660px;margin-inline:auto;padding-inline:26px}
+
+  /* scroll reveals */
+  .r{opacity:0;transform:translateY(26px);transition:opacity 1s var(--ease),transform 1s var(--ease)}
+  .r.seen{opacity:1;transform:none}
+
+  /* hero */
+  .hero{padding:clamp(84px,16vh,170px) 0 clamp(60px,10vh,100px)}
+  .eyebrow{
+    margin:0 0 26px;font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--accent);
+  }
+  h1{
+    font-family:var(--serif);font-weight:400;
+    font-size:clamp(44px,11vw,82px);line-height:1.02;letter-spacing:-.02em;margin:0;
+  }
+  h1 em{font-style:italic}
+  .lede{font-size:clamp(17px,2.3vw,19.5px);color:var(--ink-2);margin:32px 0 0;max-width:50ch}
+  .lede + .lede{margin-top:19px}
+
+  .rule{height:1px;background:var(--line);border:0;margin:clamp(56px,9vh,104px) 0}
+
+  .label{
+    margin:0 0 24px;font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--muted);
+  }
+
+  /* triptych */
+  .panel{margin:0;padding:clamp(40px,7vh,76px) 0}
+  .panel__n{
+    font-family:var(--serif);font-size:13px;letter-spacing:.3em;text-transform:uppercase;
+    color:var(--accent);margin:0 0 18px;
+  }
+  .panel img{
+    width:100%;border-radius:2px;background:var(--paper-2);
+    box-shadow:0 30px 70px -40px rgba(26,26,24,.4);
+  }
+  .slides{
+    position:relative;overflow:hidden;border-radius:2px;background:var(--paper-2);
+    box-shadow:0 30px 70px -40px rgba(26,26,24,.4);
+  }
+  .slides img{
+    position:absolute;inset:0;width:100%;height:100%;
+    object-fit:var(--fit,cover);
+    transition:transform .9s var(--ease);
+  }
+  .sdots{display:flex;gap:6px;margin-top:18px}
+  .sdots i{
+    width:5px;height:5px;border-radius:50%;background:var(--line);
+    transition:background .4s,transform .4s;
+  }
+  .sdots i.on{background:var(--accent);transform:scale(1.3)}
+  .panel figcaption{margin-top:26px}
+  .panel__q{
+    font-family:var(--serif);font-size:clamp(23px,4.6vw,32px);line-height:1.3;
+    letter-spacing:-.01em;margin:0;color:var(--ink);
+  }
+  .panel__note{margin:14px 0 0;font-size:14.5px;color:var(--muted);max-width:44ch}
+
+  /* letter */
+  .letter p{font-size:clamp(17px,2.3vw,19px);color:var(--ink-2);margin:0 0 19px;max-width:50ch}
+  .letter p:last-child{margin-bottom:0}
+  .counter{
+    font-family:var(--serif);font-size:clamp(26px,5.4vw,38px);line-height:1.25;margin:0;
+    letter-spacing:-.01em;
+  }
+  .counter b{font-weight:400;color:var(--accent);font-variant-numeric:tabular-nums}
+  .sig{margin:34px 0 0;font-size:15px;color:var(--muted)}
+  .end{padding-bottom:clamp(90px,16vh,180px)}
+
+  /* ══ birthday dressing ══ */
+  .bunting{display:flex;align-items:flex-start;border-top:1px solid var(--line)}
+  .bunting i{flex:1 1 0;height:17px;clip-path:polygon(0 0,100% 0,50% 100%)}
+  .bunting i:nth-child(3n+1){background:var(--accent);opacity:.7}
+  .bunting i:nth-child(3n+2){background:#E8B44F;opacity:.65}
+  .bunting i:nth-child(3n+3){background:var(--paper-3)}
+
+  .cake-wrap{
+    display:grid;justify-items:center;gap:18px;
+    padding:clamp(16px,4vh,40px) 0 clamp(34px,7vh,68px);
+  }
+  .cake{background:none;border:0;padding:0;cursor:pointer;-webkit-tap-highlight-color:transparent}
+  .cake:focus-visible{outline:2px solid var(--accent);outline-offset:14px;border-radius:6px}
+  .cake svg{width:min(60vw,220px);height:auto;display:block}
+
+  .flame{transform-box:fill-box;transform-origin:50% 100%;animation:flicker 1.7s ease-in-out infinite}
+  .flame--2{animation-delay:-.55s}
+  .flame--3{animation-delay:-1.1s}
+  @keyframes flicker{
+    0%,100%{transform:scale(1);opacity:1}
+    50%{transform:scale(1.16) translateY(-1px);opacity:.82}
+  }
+  .cake.is-out .flame{
+    animation:none;opacity:0;transform:scale(.25);
+    transition:opacity .5s var(--ease),transform .5s var(--ease);
+  }
+  .smoke{opacity:0;transform-box:fill-box;transform-origin:50% 100%}
+  .cake.is-out .smoke{animation:wisp 2.4s ease-out .2s forwards}
+  @keyframes wisp{
+    0%{opacity:.55;transform:translateY(0)}
+    100%{opacity:0;transform:translateY(-26px)}
+  }
+
+  .cake-hint{
+    margin:0;font-size:12.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);
+    display:flex;align-items:center;gap:12px;animation:breathe 3.4s ease-in-out infinite;
+  }
+  .cake-hint::before,.cake-hint::after{content:"";width:22px;height:1px;background:var(--line)}
+  .cake-hint.is-out{animation:none;opacity:0;transition:opacity .5s}
+
+  .secret__body{
+    opacity:0;transform:translateY(22px);
+    transition:opacity 1s var(--ease),transform 1s var(--ease);
+  }
+  .secret__body.is-open{opacity:1;transform:none}
+
+  /* music toggle */
+  #sound{
+    position:fixed;top:max(16px,env(safe-area-inset-top));right:16px;z-index:60;
+    width:38px;height:38px;border-radius:50%;border:1px solid var(--line);
+    background:rgba(250,249,247,.82);backdrop-filter:blur(10px);
+    display:none;place-items:center;cursor:pointer;color:var(--muted);
+  }
+  #sound.is-on{display:grid}
+  #sound svg{width:16px;height:16px}
+  #sound .off{display:none}
+  #sound[aria-pressed="true"] .on{display:none}
+  #sound[aria-pressed="true"] .off{display:block}
+
+  /* confetti */
+  #confetti{position:fixed;inset:0;z-index:55;pointer-events:none;overflow:hidden}
+  .bit{position:absolute;top:-14vh;will-change:transform,opacity}
+  @keyframes fall{to{transform:translate3d(var(--dx),118vh,0) rotate(var(--rot));opacity:0}}
+
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    *{animation-duration:.01ms !important;transition-duration:.25s !important}
+    #confetti{display:none}
+    .r{opacity:1;transform:none}
+  }
+</style>
+</head>
+<body class="is-sealed">
+
+<!-- ═══════════════════════════════════════════════════════════════
+     Everything you need to edit is in the CONFIG block near the
+     bottom of this file. Photos go in  photos/ , music in  audio/ .
+     ═══════════════════════════════════════════════════════════════ -->
+
+<div id="confetti" aria-hidden="true"></div>
+
+<button id="sound" type="button" aria-pressed="false" aria-label="Toggle music">
+  <svg class="on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H3v6h3l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg>
+  <svg class="off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H3v6h3l5 4V5z"/><path d="m17 9 4 6M21 9l-4 6"/></svg>
+</button>
+
+<div id="seal">
+  <div class="seal__inner">
+    <button class="envelope" id="envelope" type="button" data-open="false" aria-label="Open the envelope">
+      <span class="env__body"></span>
+      <span class="env__letter"><i></i><i></i><i></i><i></i></span>
+      <span class="env__pocket"></span>
+      <span class="env__flap"></span>
+    </button>
+    <p class="hint" id="hint">Tap to open, puchu</p>
+  </div>
+</div>
+
+<main id="card">
+  <div class="bunting r" id="bunting" aria-hidden="true"></div>
+
+  <header class="hero wrap">
+    <p class="eyebrow r" id="c-eyebrow"></p>
+    <h1 class="r" id="c-title"></h1>
+    <div id="c-open"></div>
+  </header>
+
+  <div class="wrap"><hr class="rule r"></div>
+
+  <section class="wrap">
+    <p class="label r" id="c-tri-label"></p>
+    <div id="c-triptych"></div>
+  </section>
+
+  <div class="wrap"><hr class="rule r"></div>
+
+  <section class="wrap end">
+    <div class="cake-wrap r">
+      <button class="cake" id="cake" type="button"
+              aria-expanded="false" aria-controls="secret-body"
+              aria-label="Blow out the candles to open the message">
+        <svg viewBox="0 0 240 180" xmlns="http://www.w3.org/2000/svg" fill="none">
+          <ellipse class="flame flame--1" cx="80" cy="30" rx="5.5" ry="9.5" fill="#E8B44F"/>
+          <ellipse class="flame flame--2" cx="120" cy="24" rx="5.5" ry="9.5" fill="#E8B44F"/>
+          <ellipse class="flame flame--3" cx="160" cy="30" rx="5.5" ry="9.5" fill="#E8B44F"/>
+          <g stroke="#8A8782" stroke-width="1.3" stroke-linecap="round">
+            <path class="smoke" d="M80 24c4-5-4-9 0-14"/>
+            <path class="smoke" d="M120 18c4-5-4-9 0-14"/>
+            <path class="smoke" d="M160 24c4-5-4-9 0-14"/>
+          </g>
+          <g stroke="#1A1A18" stroke-width="1.3">
+            <rect x="76.5" y="40" width="7" height="26" rx="2" fill="#FAF9F7"/>
+            <rect x="116.5" y="34" width="7" height="32" rx="2" fill="#C8553D" fill-opacity=".22"/>
+            <rect x="156.5" y="40" width="7" height="26" rx="2" fill="#FAF9F7"/>
+          </g>
+          <path d="M72 66h96v30H72z" fill="#F2EFEA" stroke="#1A1A18" stroke-width="1.3"/>
+          <path d="M72 68c8 0 8 7 16 7s8-7 16-7 8 7 16 7 8-7 16-7 8 7 16 7 8-7 16-7"
+                stroke="#C8553D" stroke-width="1.3"/>
+          <path d="M50 96h140v42H50z" fill="#F2EFEA" stroke="#1A1A18" stroke-width="1.3"/>
+          <path d="M50 98c10 0 10 8 20 8s10-8 20-8 10 8 20 8 10-8 20-8 10 8 20 8 10-8 20-8 10 8 20 8"
+                stroke="#C8553D" stroke-width="1.3"/>
+          <path d="M34 138h172" stroke="#1A1A18" stroke-width="1.3" stroke-linecap="round"/>
+          <path d="M56 144h128" stroke="#E3E0DB" stroke-width="1.3" stroke-linecap="round"/>
+        </svg>
+      </button>
+      <p class="cake-hint" id="cake-hint">Candles bujha do</p>
+    </div>
+
+    <div class="secret__body" id="secret-body" hidden>
+      <p class="label" id="c-letter-label"></p>
+      <div class="letter" id="c-letter"></div>
+      <p class="counter" id="c-counter" style="margin-top:38px"></p>
+      <p class="sig" id="c-sig"></p>
+    </div>
+  </section>
+</main>
+
+<audio id="audio" loop preload="none"></audio>
+
+<script>
+/* ═══════════════════════════════════════════════════════════════════
+   ██  CONFIG — edit this, ignore the rest.
+   ═══════════════════════════════════════════════════════════════════ */
+const CONFIG = {
+
+  /* --- the date you two met. Powers the day counter at the end. --- */
+  metOn: "2025-12-27",
+
+  eyebrow: "14 September 2026",
+  title: "Happy birthday,<br><em>puchu</em>",
+
+  /* --- opening. One string per paragraph. --- */
+  /* --- opening. One string per paragraph. --- */
+  opening: [
+    "Happy birthday, baby. Aaj mai tumhare saamne hona chahta tha — tumhe gale lagana chahta tha, saamne se wish karna chahta tha, aur tumhara chehra dekhna chahta tha jab tum ye padhti. Possible nahi ho paya, aur mujhe uska sach me bura lag raha hai.",
+    "Toh jab tak mai khud nahi pahunchta, tab tak ye — theek 12 baje, jaisa tumne kaha tha."
+  ],
+
+  // Section heading above the photos. Leave "" for none — recommended, so
+  // the then/now/always reveal lands one panel at a time as she scrolls.
+  // If you want one, something oblique works: "Ruko" / "Ek baat dikhani hai"
+  triptychLabel: "",
+
+  /* --- THE TRIPTYCH. Drop your 3 photos in the photos/ folder and
+         name them here. Leave src as "" to show a placeholder slot. --- */
+  triptych: [
+    {
+      n: "Then",
+      src: "photos/then.jpg",
+      alt: "The two of us as kids, in one photo",
+      quote: "We missed this.",
+      note: "Iss photo mein hum kabhi saath nahi the. Ab hai."
+    },
+    {
+      n: "Now",
+      // Slideshow. Add as many as you like, in the order you want them
+      // to appear — each one slides in from the right. 2+ enables it.
+      srcs: [
+        "photos/now-1.jpg",
+        "photos/now-2.jpg",
+        "photos/now-3.jpg",
+        "photos/now-4.jpg",
+        "photos/now-5.jpg",
+        "photos/now-6.jpg",
+        "photos/now-7.jpg",
+        "photos/now-8.jpg",
+        "photos/now-9.jpg",
+        "photos/now-10.jpg",
+        "photos/now-11.jpg",
+        "photos/now-12.jpg",
+        "photos/now-13.jpg",
+        "photos/now-14.jpg",
+        "photos/now-15.jpg",
+        "photos/now-16.jpg",
+        "photos/now-17.jpg",
+        "photos/now-18.jpg",
+        "photos/now-19.jpg",
+        "photos/now-20.jpg",
+        "photos/now-21.jpg",
+        "photos/now-22.jpg",
+        "photos/now-23.jpg",
+        "photos/now-24.jpg",
+        "photos/now-25.jpg",
+        "photos/now-26.jpg",
+        "photos/now-27.jpg",
+        "photos/now-28.jpg",
+        "photos/now-29.jpg",
+        "photos/now-30.jpg",
+        "photos/now-31.jpg",
+        "photos/now-32.jpg",
+        "photos/now-33.jpg",
+        "photos/now-34.jpg",
+        "photos/now-35.jpg",
+        "photos/now-36.jpg",
+        "photos/now-37.jpg",
+        "photos/now-38.jpg",
+        "photos/now-39.jpg",
+        "photos/now-40.jpg"
+      ],
+      alt: "Us, this year",
+      quote: "Ab ek second bhi miss nahi karunga.",
+      note: "Jaisalmer ki dhoop se India Gate ki baarish tak."
+    },
+    {
+      n: "Always",
+      src: "photos/always.jpg",
+      alt: "Us, many years from now",
+      quote: "Aur hume yaha tak pahunchna hai.",
+      note: "Humari six-month wali photo, bas kuch saal aage. Waise to humara rishta 7 janmo ka hai."
+    }
+  ],
+
+  letterLabel: "Ek baat",
+
+  /* --- the real letter. REWRITE THIS IN YOUR OWN WORDS. --- */
+  letter: [
+    "You tell me you never quite believe how wanted you are. So let me be plain about it: I am the lucky one here. From that bus ride to tonight, I would choose you every single time, and I have never once had to think about it.",
+    "You showed me the parts of yourself you keep hidden from everyone else, and somewhere along the way I became the person you can cry in front of and talk complete nonsense with. And it goes both ways — there are things I had never said out loud to anyone before you, things I was sure would be judged, and now I say them to you without thinking twice. I can be vulnerable around you. Nothing I have been given means more to me than that.",
+    "You remember everything. I mentioned once, in passing, that as a kid I never got the toy I actually wanted — and months later you handed me my own car. I am not going to thank you for it, that is not allowed between us, but I think about it far more often than you would guess.",
+    "There is still so much left. The mountains, the snow, that bridge you showed me. I am in no hurry about any of it. I only know that all of it is meant to happen with you.",
+    "And I know I am not perfect. I make mistakes, a lot of them, and there is plenty about me I am still working on. You have seen all of it up close and you stayed anyway. So this is not a birthday line, it is a promise: I will keep becoming a better person for you, because you deserve the best there is."
+  ],
+
+  /* --- {days} is replaced with the number of days since metOn --- */
+  counter: "I love you 2^t. Aaj t = {days}.",
+
+  signature: "— tumhara chotu",
+
+  /* --- slideshow --- */
+  slideSeconds: 3.2,      // how long each photo holds
+  slideRatio: "1 / 1",    // frame shape. "4 / 5" or "3 / 4" if you keep only
+                          // portrait shots; "16 / 9" for landscape.
+  slideFit: "cover",      // "cover" fills the frame and crops the edges.
+                          // "contain" shows the whole photo, no cropping,
+                          // with paper showing around it.
+
+  /* --- music: put a file in audio/ and name it. "" = no music. --- */
+  music: "audio/song.mp3",
+  musicVolume: 0.4
+};
+/* ═══════════════════════════════════════════════════════════════════
+   Machinery below. You shouldn't need to touch it.
+   ═══════════════════════════════════════════════════════════════════ */
+
+const $ = (s) => document.querySelector(s);
+
+if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+
+function placeholder(label){
+  const svg =
+    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 750">' +
+    '<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1">' +
+    '<stop offset="0" stop-color="#EFECE6"/><stop offset="1" stop-color="#DBD5CC"/></linearGradient></defs>' +
+    '<rect width="1000" height="750" fill="url(#g)"/>' +
+    '<text x="500" y="390" text-anchor="middle" font-family="Inter,sans-serif" ' +
+    'font-size="26" letter-spacing="7" fill="#A8A29A">' + label.toUpperCase() + '</text></svg>';
+  return 'data:image/svg+xml;utf8,' + encodeURIComponent(svg);
+}
+
+/* ---- text ---- */
+$('#c-eyebrow').textContent   = CONFIG.eyebrow;
+$('#c-title').innerHTML       = CONFIG.title;
+if (CONFIG.triptychLabel) $('#c-tri-label').textContent = CONFIG.triptychLabel;
+else $('#c-tri-label').remove();
+$('#c-letter-label').textContent = CONFIG.letterLabel;
+$('#c-sig').textContent       = CONFIG.signature;
+
+const paras = (arr, host, cls) => arr.forEach((txt) => {
+  const p = document.createElement('p');
+  p.className = cls;
+  p.textContent = txt;
+  host.append(p);
+});
+paras(CONFIG.opening, $('#c-open'), 'lede r');
+paras(CONFIG.letter, $('#c-letter'), '');
+
+/* ---- day counter ---- */
+const midnight = (d) => new Date(d.getFullYear(), d.getMonth(), d.getDate()).getTime();
+const days = Math.max(0, Math.round(
+  (midnight(new Date()) - midnight(new Date(CONFIG.metOn + 'T00:00:00'))) / 86400000
+));
+$('#c-counter').innerHTML =
+  CONFIG.counter.replace('{days}', '<b>' + days + '</b>');
+
+/* ---- triptych ---- */
+function makeImage(src, alt, label, eager){
+  const img = document.createElement('img');
+  img.src = src || placeholder(label);
+  img.alt = alt;
+  img.loading = eager ? 'eager' : 'lazy';
+  img.decoding = 'async';
+  img.addEventListener('error', () => { img.src = placeholder(label); });
+  return img;
+}
+
+/* auto-advancing slideshow: each photo slides in from the right.
+   Only runs while it is on screen and the tab is visible. */
+function makeSlideshow(panel){
+  const box = document.createElement('div');
+  box.className = 'slides';
+  box.style.aspectRatio = CONFIG.slideRatio;
+  box.style.setProperty('--fit', CONFIG.slideFit || 'cover');
+
+  const imgs = panel.srcs.map((src, i) => {
+    const img = makeImage(src, panel.alt + ' \u2014 ' + (i + 1), panel.n, i === 0);
+    img.style.transform = i === 0 ? 'translateX(0)' : 'translateX(100%)';
+    box.append(img);
+    return img;
+  });
+
+  // a 40-dot row reads as clutter; past ~14 photos the dots are dropped
+  const dots = document.createElement('div');
+  dots.className = 'sdots';
+  if (panel.srcs.length > 14) dots.style.display = 'none';
+  imgs.forEach((_, i) => {
+    const d = document.createElement('i');
+    if (i === 0) d.className = 'on';
+    dots.append(d);
+  });
+
+  let index = 0, timer = null, inView = false;
+
+  function show(next){
+    if (next === index) return;
+    const cur = imgs[index], nxt = imgs[next];
+    nxt.style.transition = 'none';
+    nxt.style.transform = 'translateX(100%)';
+    void nxt.offsetWidth;
+    nxt.style.transition = '';
+    cur.style.transform = 'translateX(-100%)';
+    nxt.style.transform = 'translateX(0)';
+    [...dots.children].forEach((d, i) => { d.className = i === next ? 'on' : ''; });
+    index = next;
+  }
+
+  function sync(){
+    const shouldRun = inView && !document.hidden;
+    if (shouldRun && !timer) {
+      timer = setInterval(() => show((index + 1) % imgs.length),
+                          CONFIG.slideSeconds * 1000);
+    } else if (!shouldRun && timer) {
+      clearInterval(timer);
+      timer = null;
+    }
+  }
+
+  new IntersectionObserver((entries) => {
+    entries.forEach((e) => { inView = e.isIntersecting; });
+    sync();
+  }, { threshold: 0.25 }).observe(box);
+
+  document.addEventListener('visibilitychange', sync);
+
+  return [box, dots];
+}
+
+CONFIG.triptych.forEach((panel) => {
+  const fig = document.createElement('figure');
+  fig.className = 'panel r';
+
+  const n = document.createElement('p');
+  n.className = 'panel__n';
+  n.textContent = panel.n;
+  fig.append(n);
+
+  const srcs = Array.isArray(panel.srcs) ? panel.srcs : null;
+  if (srcs && srcs.length > 1) {
+    fig.append(...makeSlideshow(panel));
+  } else {
+    fig.append(makeImage(panel.src || (srcs && srcs[0]),
+                         panel.alt || panel.n, panel.n, false));
+  }
+
+  const cap = document.createElement('figcaption');
+  const q = document.createElement('p');
+  q.className = 'panel__q';
+  q.textContent = panel.quote;
+  cap.append(q);
+  if (panel.note) {
+    const note = document.createElement('p');
+    note.className = 'panel__note';
+    note.textContent = panel.note;
+    cap.append(note);
+  }
+  fig.append(cap);
+
+  $('#c-triptych').append(fig);
+});
+
+/* ---- scroll reveals ---- */
+const io = new IntersectionObserver((entries) => {
+  entries.forEach((e) => {
+    if (e.isIntersecting) { e.target.classList.add('seen'); io.unobserve(e.target); }
+  });
+}, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+
+document.querySelectorAll('.r').forEach((el) => io.observe(el));
+
+/* ---- confetti ---- */
+function confetti(){
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const host = $('#confetti');
+  const palette = ['#C8553D', '#1A1A18', '#C9C3B9', '#E8B44F'];
+  for (let i = 0; i < 46; i++) {
+    const bit = document.createElement('span');
+    bit.className = 'bit';
+    const w = 2 + Math.random() * 3;
+    bit.style.left = Math.random() * 100 + 'vw';
+    bit.style.width = w + 'px';
+    bit.style.height = (w * (5 + Math.random() * 7)) + 'px';
+    bit.style.background = palette[i % palette.length];
+    bit.style.opacity = 0.45 + Math.random() * 0.45;
+    if (i % 3 === 0) {                       // mix round bits in with the slivers
+      bit.style.height = w * 2 + 'px';
+      bit.style.width = w * 2 + 'px';
+      bit.style.borderRadius = '50%';
+    }
+    bit.style.setProperty('--dx', (Math.random() * 150 - 75) + 'px');
+    bit.style.setProperty('--rot', (Math.random() * 900 - 450) + 'deg');
+    bit.style.animation = 'fall ' + (4.5 + Math.random() * 4) + 's linear ' +
+                          (Math.random() * 2.4) + 's forwards';
+    bit.addEventListener('animationend', () => bit.remove());
+    host.append(bit);
+  }
+}
+
+/* ---- music ---- */
+const audio = $('#audio');
+const soundBtn = $('#sound');
+function fadeTo(target, ms){
+  const from = audio.volume, t0 = performance.now();
+  (function step(now){
+    const k = Math.min(1, (now - t0) / ms);
+    audio.volume = from + (target - from) * k;
+    if (k < 1) requestAnimationFrame(step);
+  })(t0);
+}
+
+function startMusic(){
+  if (!CONFIG.music) return;
+  audio.src = CONFIG.music;
+  audio.volume = 0;
+  soundBtn.classList.add('is-on');          // always offer the control
+  audio.play()
+    .then(() => fadeTo(CONFIG.musicVolume, 2500))
+    .catch(() => soundBtn.setAttribute('aria-pressed', 'true'));
+}
+
+soundBtn.addEventListener('click', () => {
+  const isOff = soundBtn.getAttribute('aria-pressed') === 'true';
+  if (isOff) {
+    audio.muted = false;
+    if (audio.paused) audio.play().catch(() => {});
+    fadeTo(CONFIG.musicVolume, 800);
+    soundBtn.setAttribute('aria-pressed', 'false');
+  } else {
+    audio.muted = true;
+    soundBtn.setAttribute('aria-pressed', 'true');
+  }
+});
+
+/* ---- bunting ---- */
+const bunting = $('#bunting');
+const flagCount = Math.max(11, Math.round(window.innerWidth / 26));
+for (let i = 0; i < flagCount; i++) bunting.append(document.createElement('i'));
+
+/* ---- candles unlock the note ---- */
+const cake = $('#cake');
+const secretBody = $('#secret-body');
+let blown = false;
+
+cake.addEventListener('click', () => {
+  if (blown) return;
+  blown = true;
+  cake.classList.add('is-out');
+  cake.setAttribute('aria-expanded', 'true');
+  $('#cake-hint').classList.add('is-out');
+  setTimeout(() => {
+    secretBody.hidden = false;
+    requestAnimationFrame(() => secretBody.classList.add('is-open'));
+    confetti();
+  }, 750);
+});
+
+/* ---- open ---- */
+const envelope = $('#envelope');
+let opened = false;
+function open(){
+  if (opened) return;
+  opened = true;
+  envelope.dataset.open = 'true';
+  $('#hint').classList.add('is-out');
+  startMusic();
+  setTimeout(() => {
+    $('#seal').classList.add('is-gone');
+    document.body.classList.remove('is-sealed');
+    window.scrollTo(0, 0);
+    $('#card').classList.add('is-here');
+    confetti();
+  }, 1550);
+  setTimeout(() => $('#seal').remove(), 2700);
+}
+envelope.addEventListener('click', open);
+</script>
+</body>
+</html>
